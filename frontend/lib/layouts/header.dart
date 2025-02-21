@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '/cliente/login_registro.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   const Header({super.key});
@@ -63,26 +62,11 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           title: const Text(""),
           actions: [
             IconButton(
-              icon: const Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-                size: 28,
-              ),
-              onPressed: () {},
-            ),
-            const SizedBox(width: 10),
-            IconButton(
-              icon: const Icon(Icons.person, color: Colors.white, size: 28),
+              icon: const Icon(Icons.camera_alt, color: Colors.white, size: 28),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginRegistroScreen(),
-                  ),
-                );
+                // Acción para abrir la cámara
               },
             ),
-            const SizedBox(width: 15),
           ],
         ),
       ),
@@ -134,11 +118,6 @@ class CustomDrawer extends StatelessWidget {
                   },
                 ),
                 _drawerItem(
-                  icon: Icons.restaurant_menu,
-                  text: "Menú",
-                  onTap: () {},
-                ),
-                _drawerItem(
                   icon: Icons.shopping_cart,
                   text: "Pedidos",
                   onTap: () {},
@@ -153,7 +132,21 @@ class CustomDrawer extends StatelessWidget {
                   text: "Configuración",
                   onTap: () {},
                 ),
+                _drawerItem(
+                  icon: Icons.contact_mail,
+                  text: "Contáctanos",
+                  onTap: () {},
+                ),
                 const Divider(),
+                _drawerItem(
+                  icon: Icons.login,
+                  text: "Iniciar Sesión",
+                  color: Colors.blue,
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/cliente/login_registro');
+                  },
+                ),
                 _drawerItem(
                   icon: Icons.exit_to_app,
                   text: "Cerrar Sesión",

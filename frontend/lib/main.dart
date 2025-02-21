@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'layouts/header.dart';
+import 'cliente/login_registro.dart'; // Importa la pantalla de LoginRegistro
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const HomeScreen(),
+      routes: {
+        '/cliente/login_registro':
+            (context) => const LoginRegistroScreen(), // Agrega esta línea
+      },
     );
   }
 }
