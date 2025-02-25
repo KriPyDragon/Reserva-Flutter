@@ -64,7 +64,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             IconButton(
               icon: const Icon(Icons.camera_alt, color: Colors.white, size: 28),
               onPressed: () {
-                // Acción para abrir la cámara
+                Navigator.pushNamed(context, '/extras/escaner');
               },
             ),
           ],

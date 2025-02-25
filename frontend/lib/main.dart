@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'layouts/header.dart';
-import 'cliente/login_registro.dart'; // Importa la pantalla de LoginRegistro
+import 'cliente/login_registro.dart';
+import 'extras/escaner.dart'; // Importa la pantalla del escáner
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +21,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
       routes: {
-        '/cliente/login_registro':
-            (context) => const LoginRegistroScreen(), // Agrega esta línea
+        '/cliente/login_registro': (context) => const LoginRegistroScreen(),
+        '/extras/escaner': (context) => const EscanerScreen(),
       },
     );
   }
@@ -40,8 +41,8 @@ class HomeScreen extends StatelessWidget {
           // 🔹 Imagen de fondo expandida
           Positioned.fill(
             child: Image.asset(
-              'assets/tayceci.jpg',
-              fit: BoxFit.fill,
+              'assets/comida.webp',
+              fit: BoxFit.cover,
               filterQuality: FilterQuality.high,
             ),
           ),
