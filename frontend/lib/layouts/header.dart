@@ -64,7 +64,10 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             IconButton(
               icon: const Icon(Icons.camera_alt, color: Colors.white, size: 28),
               onPressed: () {
-                Navigator.pushNamed(context, '/extras/escaner');
+                if (ModalRoute.of(context)?.settings.name !=
+                    '/extras/escaner') {
+                  Navigator.pushNamed(context, '/extras/escaner');
+                }
               },
             ),
           ],
