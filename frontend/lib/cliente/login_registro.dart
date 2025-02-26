@@ -15,8 +15,8 @@ class LoginRegistroScreenState extends State<LoginRegistroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const Header(),
-      drawer: const CustomDrawer(), // Usa el Drawer actualizado
+      appBar: const Header(), // Eliminado showBackButton
+      drawer: const CustomDrawer(), // Agregado el Drawer
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -33,7 +33,6 @@ class LoginRegistroScreenState extends State<LoginRegistroScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // 🔹 Icono central animado
                 const CircleAvatar(
                   radius: 50,
                   backgroundColor: Colors.white,
@@ -44,8 +43,6 @@ class LoginRegistroScreenState extends State<LoginRegistroScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // 🔹 Tarjeta de formulario con animación
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
@@ -81,7 +78,6 @@ class LoginRegistroScreenState extends State<LoginRegistroScreen> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
@@ -163,7 +159,6 @@ class LoginRegistroScreenState extends State<LoginRegistroScreen> {
           ),
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              // 🔹 Aquí irá la autenticación
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
@@ -183,7 +178,6 @@ class LoginRegistroScreenState extends State<LoginRegistroScreen> {
     );
   }
 
-  // 🔹 Widget para inputs personalizados con validación
   Widget _customTextField({
     required String label,
     required IconData icon,

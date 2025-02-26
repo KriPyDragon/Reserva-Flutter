@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'layouts/header.dart';
 import 'cliente/login_registro.dart';
-import 'extras/escaner.dart'; // Importa la pantalla del escáner
+import 'extras/escaner.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+  ); // 🔹 Oculta barras del sistema
+
   runApp(const MyApp());
 }
 

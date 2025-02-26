@@ -40,7 +40,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
                         size: 28,
                       ),
                       onPressed: () {
-                        if (Scaffold.of(context).hasDrawer) {
+                        if (Scaffold.maybeOf(context)?.hasDrawer ?? false) {
                           Scaffold.of(context).openDrawer();
                         }
                       },
@@ -77,7 +77,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-// 🔹 Drawer mejorado con diseño moderno
+// 🔹 Drawer mejorado con navegación optimizada
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
@@ -101,59 +101,46 @@ class CustomDrawer extends StatelessWidget {
             ),
             accountEmail: const Text("usuario@email.com"),
             currentAccountPicture: const CircleAvatar(
-              backgroundImage: AssetImage(
-                "assets/usuario.png",
-              ), // 🔹 Agrega un avatar
+              backgroundImage: AssetImage("assets/usuario.png"),
             ),
           ),
           Expanded(
             child: ListView(
               children: [
+                _drawerItem(context, Icons.home, "Inicio", '/'),
                 _drawerItem(
-                  icon: Icons.home,
-                  text: "Inicio",
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushReplacementNamed(context, '/');
-                  },
+                  context,
+                  Icons.shopping_cart,
+                  "Pedidos",
+                  '/pedidos',
+                ),
+                _drawerItem(context, Icons.favorite, "Favoritos", '/favoritos'),
+                _drawerItem(
+                  context,
+                  Icons.settings,
+                  "Configuración",
+                  '/configuracion',
                 ),
                 _drawerItem(
-                  icon: Icons.shopping_cart,
-                  text: "Pedidos",
-                  onTap: () {},
-                ),
-                _drawerItem(
-                  icon: Icons.favorite,
-                  text: "Favoritos",
-                  onTap: () {},
-                ),
-                _drawerItem(
-                  icon: Icons.settings,
-                  text: "Configuración",
-                  onTap: () {},
-                ),
-                _drawerItem(
-                  icon: Icons.contact_mail,
-                  text: "Contáctanos",
-                  onTap: () {},
+                  context,
+                  Icons.contact_mail,
+                  "Contáctanos",
+                  '/contacto',
                 ),
                 const Divider(),
                 _drawerItem(
-                  icon: Icons.login,
-                  text: "Iniciar Sesión",
+                  context,
+                  Icons.login,
+                  "Iniciar Sesión",
+                  '/cliente/login_registro',
                   color: Colors.blue,
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/cliente/login_registro');
-                  },
                 ),
                 _drawerItem(
-                  icon: Icons.exit_to_app,
-                  text: "Cerrar Sesión",
+                  context,
+                  Icons.exit_to_app,
+                  "Cerrar Sesión",
+                  '/logout',
                   color: Colors.red,
-                  onTap: () {
-                    // Acción para cerrar sesión
-                  },
                 ),
               ],
             ),
@@ -163,11 +150,12 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  // 🔹 Widget para ítems del Drawer
-  Widget _drawerItem({
-    required IconData icon,
-    required String text,
-    required VoidCallback onTap,
+  // 🔹 Widget para ítems del Drawer con navegación mejorada
+  Widget _drawerItem(
+    BuildContext context,
+    IconData icon,
+    String text,
+    String route, {
     Color color = Colors.black87,
   }) {
     return ListTile(
@@ -180,7 +168,12 @@ class CustomDrawer extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      onTap: onTap,
+      onTap: () {
+        Navigator.pop(context); // Cierra el drawer primero
+        if (ModalRoute.of(context)?.settings.name != route) {
+          Navigator.pushReplacementNamed(context, route);
+        }
+      },
     );
   }
 }
