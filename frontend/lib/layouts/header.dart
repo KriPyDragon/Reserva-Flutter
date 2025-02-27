@@ -128,7 +128,7 @@ class CustomDrawer extends StatelessWidget {
                   context,
                   Icons.contact_mail,
                   "Contáctanos",
-                  '/contacto',
+                  '/extras/contactanos',
                 ),
                 const Divider(),
                 _drawerItem(

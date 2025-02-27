@@ -3,6 +3,7 @@ import 'layouts/header.dart';
 import 'cliente/login_registro.dart';
 import 'extras/escaner.dart';
 import 'package:flutter/services.dart';
+import 'extras/contactanos.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/cliente/login_registro': (context) => const LoginRegistroScreen(),
         '/extras/escaner': (context) => const EscanerScreen(),
+        '/extras/contactanos': (context) => const ContactanosScreen(),
       },
     );
   }
